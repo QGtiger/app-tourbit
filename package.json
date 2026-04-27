@@ -10,11 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@ant-design/icons": "^6.2.2",
     "@lightfish/server": "0.0.15",
     "@tailwindcss/vite": "^4.2.4",
     "ahooks": "^3.9.7",
     "antd": "6",
     "axios": "^1.6.2",
+    "nanoid": "^5.1.9",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
     "react-error-boundary": "^3.1.4",
