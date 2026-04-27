@@ -15,7 +15,7 @@ export default withCommonParams(async ({ userId, db }, c) => {
     throw new Error("title is required");
   }
 
-  const nodeType = type === "workflow" ? "workflow" : "folder";
+  const nodeType = type === "tourbit" ? "tourbit" : "folder";
   const newKey = generateKey();
 
   await db.insert(tourbitDirectoryTable).values({

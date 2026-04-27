@@ -33,8 +33,8 @@ export default withCommonParams(async ({ userId, db }, c) => {
     updateData.parentKey = parentKey;
   }
   if (type !== undefined) {
-    if (!["folder", "workflow"].includes(type)) {
-      throw new Error("type must be 'folder' or 'workflow'");
+    if (!["folder", "tourbit"].includes(type)) {
+      throw new Error("type must be 'folder' or 'tourbit'");
     }
     updateData.type = type;
   }

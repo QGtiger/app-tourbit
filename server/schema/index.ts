@@ -5,8 +5,8 @@ const appSchema = pgSchema("app-tourbit");
 
 /**
  * Workflow 目录树表
- * 用于存储 workflow 的目录结构，支持多级嵌套
- * type: 'folder' - 文件夹，'workflow' - 工作流文件（可通过 key 路由跳转）
+ * 用于存储 tourbit 的目录结构，支持多级嵌套
+ * type: 'folder' - 文件夹，'tourbit' - Tourbit文件（可通过 key 路由跳转）
  */
 export const tourbitDirectoryTable = appSchema.table("tourbit_directory", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
@@ -14,7 +14,7 @@ export const tourbitDirectoryTable = appSchema.table("tourbit_directory", {
   title: varchar({ length: 255 }).notNull(),
   key: varchar({ length: 255 }).notNull().unique(),
   parentKey: varchar({ length: 255 }), // 父节点 key，null 表示根节点
-  type: varchar({ length: 20 }).notNull().default("folder"), // 'folder' | 'workflow'
+  type: varchar({ length: 20 }).notNull().default("folder"), // 'folder' | 'tourbit'
   createdAt: timestamp().notNull().defaultNow(),
   updatedAt: timestamp().notNull().defaultNow(),
 });

@@ -17,7 +17,7 @@ import { lightfishRequest } from "@/api/lightfishApi";
 interface DirectoryItem {
   key: string;
   title: string;
-  type: "folder" | "workflow";
+  type: "folder" | "tourbit";
   parentKey: string | null;
   createdAt: string;
 }
@@ -35,7 +35,7 @@ const api = {
   create: (data: {
     title: string;
     parentKey: string | null;
-    type: "folder" | "workflow";
+    type: "folder" | "tourbit";
   }) =>
     lightfishRequest<DirectoryItem>("/tourbit-directory/create", {
       method: "POST",
@@ -50,7 +50,7 @@ const api = {
     data: {
       title?: string;
       parentKey?: string | null;
-      type?: "folder" | "workflow";
+      type?: "folder" | "tourbit";
     }
   ) =>
     lightfishRequest<DirectoryItem>(`/tourbit-directory/${key}/update`, {
@@ -124,7 +124,7 @@ export default function Overview() {
 
   // 新建模态框
   const [createModalOpen, setCreateModalOpen] = useState(false);
-  const [createType, setCreateType] = useState<"folder" | "workflow">("folder");
+  const [createType, setCreateType] = useState<"folder" | "tourbit">("folder");
   const [createTitle, setCreateTitle] = useState("");
 
   // 当前所在目录的 key
@@ -212,7 +212,7 @@ export default function Overview() {
   }, [pathStack]);
 
   // 打开创建模态框
-  const openCreateModal = useCallback((type: "folder" | "workflow") => {
+  const openCreateModal = useCallback((type: "folder" | "tourbit") => {
     setCreateType(type);
     setCreateTitle("");
     setCreateModalOpen(true);
@@ -317,10 +317,10 @@ export default function Overview() {
                   onClick: () => openCreateModal("folder"),
                 },
                 {
-                  key: "workflow",
+                  key: "tourbit",
                   icon: <FileFilled />,
                   label: "新建 Tourbit",
-                  onClick: () => openCreateModal("workflow"),
+                  onClick: () => openCreateModal("tourbit"),
                 },
               ],
             }}
@@ -406,9 +406,9 @@ export default function Overview() {
             ` · ${
               currentItems.filter((i) => i.type === "folder").length
             } 个文件夹`}
-          {currentItems.filter((i) => i.type === "workflow").length > 0 &&
+          {currentItems.filter((i) => i.type === "tourbit").length > 0 &&
             ` · ${
-              currentItems.filter((i) => i.type === "workflow").length
+              currentItems.filter((i) => i.type === "tourbit").length
             } 个 Tourbit`}
         </span>
       </div>
