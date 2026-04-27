@@ -21,9 +21,9 @@ function ConsoleMenu() {
       className=" border-none!"
       items={[
         {
-          key: "/console/workflow",
+          key: "/console/overview",
           icon: <SearchOutlined />,
-          label: "Flow 管理",
+          label: "Tourbit 管理",
         },
       ]}
     />
