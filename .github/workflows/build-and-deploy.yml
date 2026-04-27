@@ -8,4 +8,5 @@ jobs:
     uses: QGtiger/.github/.github/workflows/deploy-oss.yml@main
     secrets: inherit
     with:
-      APP_NAME: "app-tourbit" # 每个项目只改这里！
+      # 每个项目只改这里！
+      APP_NAME: "app-tourbit"
