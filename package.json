@@ -15,6 +15,7 @@
     "@lightfish/server": "0.0.15",
     "@tailwindcss/vite": "^4.2.4",
     "ahooks": "^3.9.7",
+    "ali-oss": "^6.23.0",
     "antd": "6",
     "axios": "^1.6.2",
     "dayjs": "^1.11.20",
