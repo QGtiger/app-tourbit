@@ -11,7 +11,6 @@ function normalizeBase(raw: string | undefined): string {
 
 function defineAppConfig() {
   return {
-    SERVER_API: "http://localhost:3000",
     LOGIN_URL: "http://account.lightfish.top",
   };
 }
@@ -49,6 +48,6 @@ export default defineConfig(() => {
       alias: {
         "@": path.resolve(__dirname, "./src"),
       },
-    }
+    },
   };
 });
