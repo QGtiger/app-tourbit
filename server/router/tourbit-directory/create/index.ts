@@ -1,5 +1,5 @@
 import { customAlphabet } from "nanoid";
-import { tourbitDirectoryTable } from "../../../schema/index.js";
+import { tourbitDirectoryTable, tourbitTable } from "../../../schema/index.js";
 import { withCommonParams } from "../../../utils/withCommonParams.js";
 
 // 纯数字随机 key，浏览器友好
@@ -25,6 +25,14 @@ export default withCommonParams(async ({ userId, db }, c) => {
     parentKey: parentKey || null,
     type: nodeType,
   });
+
+  // 如果是 tourbit 类型，同步创建默认业务记录
+  // if (nodeType === "tourbit") {
+  //   await db.insert(tourbitTable).values({
+  //     key: newKey,
+  //     userId,
+  //   });
+  // }
 
   return { title, key: newKey, parentKey: parentKey || null, type: nodeType };
 });

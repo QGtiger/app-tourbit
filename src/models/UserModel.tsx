@@ -22,12 +22,10 @@ export const UserModel = createCustomModel(() => {
     const token = getAccessToken();
     if (token) {
       const { data } = await axios.request<{ data: UserInfo }>({
-        url: "http://api.lightfish.top/api/account/info",
+        url: "http://api.lightfish.top/api/frontend-account/latest/account/info",
         method: "get",
         headers: {
           "X-User-Id": token,
-          "X-App-Name": "frontend-account",
-          "X-Version": "10",
         },
       });
 

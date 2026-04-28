@@ -1,4 +1,10 @@
-import { pgSchema, integer, varchar, timestamp } from "drizzle-orm/pg-core";
+import {
+  pgSchema,
+  integer,
+  varchar,
+  timestamp,
+  text,
+} from "drizzle-orm/pg-core";
 
 // 使用应用名称作为schema前缀
 const appSchema = pgSchema("app-tourbit");
@@ -17,4 +23,15 @@ export const tourbitDirectoryTable = appSchema.table("tourbit_directory", {
   type: varchar({ length: 20 }).notNull().default("folder"), // 'folder' | 'tourbit'
   createdAt: timestamp().notNull().defaultNow(),
   updatedAt: timestamp().notNull().defaultNow(),
+});
+
+/**
+ * Tourbit 业务数据表
+ * 存储 tourbit 的状态和 schemaJSON，与目录树表通过 key 1:1 关联
+ */
+export const tourbitTable = appSchema.table("tourbit", {
+  key: varchar({ length: 255 }).primaryKey(),
+  userId: integer().notNull(),
+  status: varchar({ length: 20 }).notNull().default("draft"), // 'draft' | 'published'
+  schemaJSON: text().notNull().default("{}"),
 });

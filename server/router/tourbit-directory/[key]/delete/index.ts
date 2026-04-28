@@ -1,4 +1,7 @@
-import { tourbitDirectoryTable } from "../../../../schema/index.js";
+import {
+  tourbitDirectoryTable,
+  tourbitTable,
+} from "../../../../schema/index.js";
 import { withCommonParams } from "../../../../utils/withCommonParams.js";
 import { eq, inArray } from "drizzle-orm";
 
@@ -21,10 +24,17 @@ export default withCommonParams(async ({ userId, db }, c) => {
   // 递归收集所有子节点的 key
   const keysToDelete = await collectChildKeys(db, key);
 
-  // 批量删除
+  // 批量删除目录记录
   await db
     .delete(tourbitDirectoryTable)
     .where(inArray(tourbitDirectoryTable.key, keysToDelete));
+
+  // 同步删除关联的 tourbit 业务记录
+  // 只删除 tourbit 类型的 key（排除文件夹自身的 key）
+  // const tourbitKeys = keysToDelete.filter((k) => k !== key);
+  // if (tourbitKeys.length > 0) {
+  //   await db.delete(tourbitTable).where(inArray(tourbitTable.key, tourbitKeys));
+  // }
 
   return {
     deleted: keysToDelete.length,

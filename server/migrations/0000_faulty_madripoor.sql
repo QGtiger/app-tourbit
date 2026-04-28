@@ -9,3 +9,10 @@ CREATE TABLE "app-tourbit"."tourbit_directory" (
 	"updatedAt" timestamp DEFAULT now() NOT NULL,
 	CONSTRAINT "tourbit_directory_key_unique" UNIQUE("key")
 );
+--> statement-breakpoint
+CREATE TABLE "app-tourbit"."tourbit" (
+	"key" varchar(255) PRIMARY KEY NOT NULL,
+	"userId" integer NOT NULL,
+	"status" varchar(20) DEFAULT 'draft' NOT NULL,
+	"schemaJSON" text DEFAULT '{}' NOT NULL
+);
